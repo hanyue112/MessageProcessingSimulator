@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2003
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cmcMessages", "cmcMessages\cmcMessages.csproj", "{4604C8A1-7249-4038-8DF2-BA5C6D7819A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cmcMessagesTest", "cmcMessagesTest\cmcMessagesTest.csproj", "{9287C4AB-2D44-43E2-9CB3-997E53A95737}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4604C8A1-7249-4038-8DF2-BA5C6D7819A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4604C8A1-7249-4038-8DF2-BA5C6D7819A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4604C8A1-7249-4038-8DF2-BA5C6D7819A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4604C8A1-7249-4038-8DF2-BA5C6D7819A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9287C4AB-2D44-43E2-9CB3-997E53A95737}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9287C4AB-2D44-43E2-9CB3-997E53A95737}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9287C4AB-2D44-43E2-9CB3-997E53A95737}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9287C4AB-2D44-43E2-9CB3-997E53A95737}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BC6CB468-C375-4BDD-9F3F-091DCA3BE5B9}
+	EndGlobalSection
+EndGlobal

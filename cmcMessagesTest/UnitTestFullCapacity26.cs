@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace cmcMessagesTest
 {
     [TestClass]
-    public class UnitTestHalfCapacity26
+    public class C_UnitTestFullCapacity26
     {
         [TestMethod]
         public void Thread26()
@@ -18,6 +18,7 @@ namespace cmcMessagesTest
             const int _runTime = 1000 * 30;
             const string _logsRoot = @"..\logs\";
             const string _gensRoot = @"..\gens\";
+            const int _maxPendingMins = 5;
 
             ICmcMessageApplication app = new CmcMessageApplication(_theradNum);
 
@@ -32,10 +33,14 @@ namespace cmcMessagesTest
             Task.Delay(_runTime).Wait();
             app.Stop();
 
-            while (app.IsComplete() == false)
+            int max = 0;
+            while (app.IsComplete() == false && max <= _maxPendingMins * 60 * 1000)
             {
+                max += 1000;
                 Task.Delay(1000).Wait();
             }
+
+            Assert.IsTrue(max <= _maxPendingMins * 60 * 1000);
 
             foreach (var c in list)
             {

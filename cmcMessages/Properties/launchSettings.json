@@ -2,7 +2,7 @@
   "profiles": {
     "cmcMessages": {
       "commandName": "Project",
-      "commandLineArgs": "26"
+      "commandLineArgs": "2"
     }
   }
 }

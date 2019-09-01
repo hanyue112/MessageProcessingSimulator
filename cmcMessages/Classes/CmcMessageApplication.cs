@@ -1,6 +1,7 @@
 ﻿using cmcMessages.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -35,8 +36,8 @@ namespace cmcMessages.Classes
                 throw new InvalidOperationException("numOfGenerators must between 1 to 26");
             }
 
-            Console.WriteLine($"Parameter of the numner of generator(s) = {numOfGenerators}");
-            Console.WriteLine($"Initializing threads pool, pool size is {numOfGenerators * _poolMultiplier}");
+            Trace.WriteLine($"Parameter of the numner of generator(s) = {numOfGenerators}");
+            Trace.WriteLine($"Initializing threads pool, pool size is {numOfGenerators * _poolMultiplier}");
 
             ThreadPool.SetMinThreads(numOfGenerators * _poolMultiplier, numOfGenerators * _poolMultiplier);
 
@@ -81,7 +82,7 @@ namespace cmcMessages.Classes
                 {
                     _messageLoggers.Start();
 
-                    Console.WriteLine($"Single entry point consumer Thread started.");
+                    Trace.WriteLine($"Single entry point consumer Thread started.");
 
                     while (_numOfGenerators > 0)
                     {
@@ -103,15 +104,15 @@ namespace cmcMessages.Classes
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Exception occurred {ex.Message}, generators terminating.");
+                    Trace.WriteLine($"Exception occurred {ex.Message}, generators terminating.");
                     _cts.Cancel();
 
                     _messageLoggers.Terminate();
-                    Console.WriteLine($"Exception occurred {ex.Message}, consumer terminated.");
+                    Trace.WriteLine($"Exception occurred {ex.Message}, consumer terminated.");
                 }
                 finally
                 {
-                    Console.WriteLine($"Message queue closed. Press any key to exit...");
+                    Trace.WriteLine($"Message queue closed. Press any key to exit...");
                     Console.Title = "Press any key to exit...";
                 }
             });
@@ -122,7 +123,7 @@ namespace cmcMessages.Classes
                 {
                     try
                     {
-                        Console.WriteLine($"Message generator thread {generator.GetName()} started.");
+                        Trace.WriteLine($"Message generator thread {generator.GetName()} started.");
 
                         Random random = new Random();
                         while (!_ct.IsCancellationRequested)
@@ -135,13 +136,13 @@ namespace cmcMessages.Classes
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"Exception occurred {ex.Message}, terminating.");
+                        Trace.WriteLine($"Exception occurred {ex.Message}, terminating.");
                         _cts.Cancel();
                         _messageLoggers.Terminate();
                     }
                     finally
                     {
-                        Console.WriteLine($"Generator {generator.GetName()} stopped.");
+                        Trace.WriteLine($"Generator {generator.GetName()} stopped.");
                     }
                 }, _ct);
             }
@@ -153,12 +154,12 @@ namespace cmcMessages.Classes
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.BackgroundColor = ConsoleColor.Yellow;
-                Console.WriteLine($"Exception(s) occurred, Press any key to exit...");
+                Trace.WriteLine($"Exception(s) occurred, Press any key to exit...");
             }
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Application shutting down. Please wait for all data completing the processing, early close of this application will cause inconsistency.");
+                Trace.WriteLine("Application shutting down. Please wait for all data completing the processing, early close of this application will cause inconsistency.");
                 Console.ResetColor();
                 Console.Title = "Application shutting down, DO NOT CLOSE THIS CONSOLE!";
                 _cts.Cancel();

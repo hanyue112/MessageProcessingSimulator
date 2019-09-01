@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using System.IO;
+using System.Diagnostics;
 
 namespace cmcMessages.Classes
 {
@@ -28,7 +29,7 @@ namespace cmcMessages.Classes
 
             for (int i = 0; i < glist.Count; i++)
             {
-                Console.WriteLine($"Initializing and allocating memory for logger {Number2String(i + 1, true)}");
+                Trace.WriteLine($"Initializing and allocating memory for logger {Number2String(i + 1, true)}");
                 _logsbuffer[i] = new BufferBlock<CmcMessagePayload>();
             }
 
@@ -62,7 +63,7 @@ namespace cmcMessages.Classes
                      {
                          try
                          {
-                             Console.WriteLine($"Messages logger thread of {g.GetName()} started.");
+                             Trace.WriteLine($"Messages logger thread of {g.GetName()} started.");
 
                              string path = $@"{root}{g.GetName()}.txt";
                              Random random = new Random();
@@ -95,7 +96,7 @@ namespace cmcMessages.Classes
                          }
                          catch (Exception ex)
                          {
-                             Console.WriteLine($"Exception occurred {ex.Message}, Logger(s) terminating.");
+                             Trace.WriteLine($"Exception occurred {ex.Message}, Logger(s) terminating.");
                              _cts.Cancel();
 
                              if (_notifyTerminate != null)
@@ -105,7 +106,7 @@ namespace cmcMessages.Classes
                          }
                          finally
                          {
-                             Console.WriteLine($"Logger of {g.GetName()} stopped.");
+                             Trace.WriteLine($"Logger of {g.GetName()} stopped.");
                          }
                      }, _ct);
             }

@@ -1,5 +1,6 @@
 ﻿using cmcMessages.Interfaces;
 using System;
+using System.Diagnostics;
 
 namespace cmcMessages.Classes
 {
@@ -11,7 +12,7 @@ namespace cmcMessages.Classes
         public MessageFactory(int generatorId)
         {
             _generatorId = generatorId;
-            Console.WriteLine($"Initializing and allocating memory for generator {Number2String(_generatorId, true)}");
+            Trace.WriteLine($"Initializing and allocating memory for generator {Number2String(_generatorId, true)}");
         }
 
         public string GetName()

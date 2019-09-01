@@ -6,8 +6,6 @@ namespace cmcMessages.Interfaces
     {
         void Start();
         void Stop();
-        void NotifyExiting();
-        void NotifyTerminate();
         bool IsComplete();
     }
 }
